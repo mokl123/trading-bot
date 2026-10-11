@@ -1,0 +1,6 @@
+# Nur diese Dateien dürfen online gehen (publish.py committet ohnehin nur die Seiten).
+/*
+!/.gitignore
+!/index.html
+!/explore.html
+!/README.md
