@@ -1,0 +1,47 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="300"><title>Polymarket BTC 5 Min – Papier</title><style>
+:root{color-scheme:light;--bg:#f4f4f2;--surface:#fcfcfb;--line:#e4e3df;--text:#0b0b0b;--text2:#52514e;--muted:#8a8984;
+--blue:#2a78d6;--good:#0ca30c;--bad:#d03b3b;--warn:#fab219;--serious:#ec835a}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#111110;--surface:#1a1a19;--line:#2e2e2c;--text:#fff;--text2:#c3c2b7;--muted:#8a8984;--blue:#3987e5}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:20px;margin:0 0 4px}.sub{color:var(--text2);font-size:13px;margin-bottom:16px}
+.status{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:14px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--muted)}.dot.on{background:var(--good)}.dot.off{background:var(--bad)}.dot.warn{background:var(--warn)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.tile .k{font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.04em}.tile .v{font-size:24px;font-weight:600;margin-top:2px}
+.tile .s{font-size:12px;color:var(--text2)}.pos{color:var(--good)}.neg{color:var(--bad)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--text2);font-weight:600}
+.chart{width:100%;height:auto;display:block}.chart .line{fill:none;stroke:var(--blue);stroke-width:2;stroke-linejoin:round}
+.chart .base{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}.chart .ax{font-size:10px;fill:var(--text2)}.chart .mid{text-anchor:middle}
+.chart .pt{fill:var(--surface);stroke:var(--blue);stroke-width:2}.chart .pt:hover{r:6}
+.chart .no{fill:var(--line)}.chart .tr{fill:var(--blue)}.chart .er{fill:var(--serious)}
+.legend{font-size:12px;color:var(--text2);margin-top:6px}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;color:var(--text2);font-weight:600;padding:6px 6px;border-bottom:1px solid var(--line)}
+td{padding:6px 6px;border-bottom:1px solid var(--line)}td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+.empty{color:var(--text2);font-size:13px;padding:10px 0}.why{font-size:13px;color:var(--text2);white-space:pre-wrap}
+.tag{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:12px;margin:2px 4px 2px 0}
+.foot{color:var(--muted);font-size:12px;margin-top:20px}
+</style></head><body><div class="wrap">
+<h1>Polymarket BTC 5 Minuten – Papier-Profil</h1>
+<div class="sub"><a href="index.html">Hauptbot</a> · <a href="explore.html">Explore</a> · <a href="polymarket.html">Polymarket</a></div>
+<div class="sub">pm-paper-0.1-datensammler · Phase 1: Daten sammeln (Baustein 1) und Preismodell prüfen (Baustein 2) · Stand 12.10.2026 21:58 Uhr</div>
+<div class="status"><span class="pill"><span class="dot on"></span>Datensammler läuft</span>
+<span class="pill"><span class="dot on"></span>Polymarket-Orderbuch</span>
+<span class="pill"><span class="dot on"></span>BTC-Kurs 82,754 $</span></div>
+<div class="tiles">
+<div class="tile"><div class="k">Sammelt seit</div><div class="v">0.1 h</div><div class="s">Ziel vor dem nächsten Schritt: 24 h</div></div>
+<div class="tile"><div class="k">Märkte gesehen</div><div class="v">3</div><div class="s">alle 5 Minuten ein neuer</div></div>
+<div class="tile"><div class="k">Abrechnungen</div><div class="v">1</div><div class="s">1 × Up · 0 × Down</div></div>
+<div class="tile"><div class="k">Trades mitgeschrieben</div><div class="v">1,917</div><div class="s">Orderbuch-/Handelszeilen seit Start des Prozesses</div></div>
+<div class="tile"><div class="k">BTC-Ticks</div><div class="v">1,349</div><div class="s">Coinbase BTC-USD (Näherung für Chainlink)</div></div>
+<div class="tile"><div class="k">Datenmenge heute</div><div class="v">0.8 MB</div><div class="s">gesamt 0.8 MB in 1 Tagesdateien</div></div>
+</div>
+<div class="card"><h2>Modellprüfung (fairer Wert vs. tatsächlicher Ausgang)</h2><div class='empty'>Modellprüfung erscheint ab 20 abgerechneten Märkten (jetzt 1).</div></div>
+<div class="card"><h2>Zuletzt abgerechnete Märkte</h2><table><tr><th>Markt</th><th>Ende</th><th>Gewinner</th></tr><tr><td>btc-updown-5m-1791834600</td><td>12.10. 21:55:00</td><td class='pos'>Up</td></tr></table></div>
+<div class="card"><h2>Was hier passiert</h2><div class="why">Es wird noch nicht gehandelt – auch nicht auf dem Papier. Zuerst sammelt der Bot 24 Stunden lang Orderbuch, jeden Handel und den BTC-Kurs. Dann wird geprüft, ob das Preismodell stimmt. Erst danach kommen die Handelsregeln (Baustein 3) und die strenge Papier-Ausführung (Baustein 4) mit diesen Startwerten: 20 Anteile je Order, Abstand 0.03, Paar-Kosten max. 0.96, höchstens 50 $ je Markt, Tagesverlust max. 30 $, Papierkonto 1000 $. Gebühr laut Polymarket: Taker 0,07 × p × (1 − p), Limit-Orders 0.</div></div>
+<div class="foot">Nur öffentliche Daten, kein Polymarket-Konto, keine Orders. Abrechnung laut Marktregeln: Chainlink BTC/USD 60-s-TWAP, Gleichstand = Up.</div>
+</div></body></html>
