@@ -1,0 +1,154 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="BTC-Bot">
+<meta name="theme-color" content="#f9f9f7" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="noindex,nofollow"><meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="bot-icon.png"><link rel="icon" type="image/png" href="bot-icon.png">
+<title>BTC-Bot</title><style>
+:root{color-scheme:light dark;--page:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--good:#0ca30c;--bad:#d03b3b;--goodtext:#006300;--badtext:#b62f2f;--warn:#fab219;--series:#2a78d6;--border:rgba(11,11,11,.10)}
+@media (prefers-color-scheme:dark){:root{--page:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--good:#0ca30c;--bad:#d03b3b;--goodtext:#0ca30c;--badtext:#e66767;--series:#3987e5;--border:rgba(255,255,255,.10)}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;padding:calc(14px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
+.wrap{max-width:560px;margin:0 auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+h1{font-size:21px;margin:0;font-weight:650}
+.kopf{display:flex;align-items:center;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.dot.ok{background:var(--good)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+button.neu{font:inherit;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px 11px;min-height:32px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px}
+.label{font-size:13px;color:var(--ink2)}
+.hero{font-size:52px;font-weight:650;line-height:1.08;margin:4px 0 6px;letter-spacing:-.02em}
+.pos{color:var(--goodtext)}.neg{color:var(--badtext)}
+.sub{font-size:14px;color:var(--ink2)}
+.alt{font-size:13px;color:var(--muted);margin-top:8px}
+.alt.warn{color:var(--ink);background:color-mix(in srgb,var(--warn) 22%,transparent);border-radius:8px;padding:6px 9px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:12px 14px}
+.tile .v{font-size:24px;font-weight:650;margin-top:2px}.tile .s{font-size:12px;color:var(--muted);margin-top:2px}
+h2{font-size:15px;font-weight:650;margin:0 0 2px}
+.chart{position:relative;margin-top:10px;touch-action:pan-y;min-height:170px}
+svg{display:block;width:100%;overflow:visible}
+svg text{font:11px system-ui,-apple-system,sans-serif;fill:var(--muted);font-variant-numeric:tabular-nums}
+svg text.wert{fill:var(--ink2)}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--page);font-size:12px;line-height:1.35;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .12s;z-index:2}
+.tip b{display:block;font-size:14px;font-weight:650}
+.row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--grid);font-size:15px}
+.row:last-child{border-bottom:0}.row span:first-child{color:var(--ink2)}.row span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--ink2);border:1px solid var(--border);border-radius:999px;padding:3px 9px}
+details{margin-top:10px;font-size:14px}summary{color:var(--ink2);padding:6px 0;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+td,th{padding:7px 2px;border-bottom:1px solid var(--grid);text-align:left}th{color:var(--muted);font-weight:500;font-size:12px}.r{text-align:right}
+.foot{font-size:12px;color:var(--muted);margin:14px 2px 0}
+</style></head><body data-gen="1794616738521"><div class="wrap">
+<header><div class="kopf"><h1>BTC-Bot</h1><span class="pill"><i class="dot ok"></i>Läuft</span></div>
+<button class="neu" id="neu" type="button" aria-label="Neu laden">↻ Neu laden</button></header>
+
+<div class="card"><div class="label">Gewinn heute</div>
+<div class="hero pos">+1,15 $</div>
+<div class="sub">1 Markt abgerechnet · gewonnen</div>
+<div class="alt" id="alter">Stand 14.11. 01:38 Uhr</div></div>
+
+<div class="tiles"><div class='tile'><div class='label'>Gestern</div><div class='v neg'>−151 $</div><div class='s'>20 von 47 Märkten gewonnen</div></div><div class='tile'><div class='label'>Letzte 24 Stunden</div><div class='v neg'>−155 $</div><div class='s'>20 von 45 Märkten gewonnen</div></div><div class='tile'><div class='label'>Diese Woche</div><div class='v pos'>+242 $</div><div class='s'>59 von 120 Märkten gewonnen · seit Montag</div></div><div class='tile'><div class='label'>Seit Start</div><div class='v pos'>+264 $</div><div class='s'>179 von 373 Märkten gewonnen · seit 29.10.</div></div></div>
+
+<div class="card"><h2>Gewinn je Tag</h2><div class="sub">In Dollar, seit dem Start am 29.10. Antippen zeigt den Tag.</div>
+<div class="chart" id="c-tage" data-titel="Gewinn je Tag"><div class="tip"></div></div>
+<details><summary>Alle Tage als Tabelle</summary><table><tr><th>Tag</th><th class="r">Gewinn</th><th class="r">gewonnen/Märkte</th></tr><tr><td>Sa 14.11.</td><td class='r pos'>+1,15 $</td><td class='r'>1/1</td></tr><tr><td>Fr 13.11.</td><td class='r neg'>−150,91 $</td><td class='r'>20/47</td></tr><tr><td>Do 12.11.</td><td class='r pos'>+204,82 $</td><td class='r'>12/21</td></tr><tr><td>Mi 11.11.</td><td class='r pos'>+7,33 $</td><td class='r'>4/10</td></tr><tr><td>Di 10.11.</td><td class='r pos'>+187,20 $</td><td class='r'>10/18</td></tr><tr><td>Mo 9.11.</td><td class='r neg'>−7,58 $</td><td class='r'>12/23</td></tr><tr><td>So 8.11.</td><td class='r pos'>+45,93 $</td><td class='r'>5/6</td></tr><tr><td>Sa 7.11.</td><td class='r '>0,00 $</td><td class='r'>0/0</td></tr><tr><td>Fr 6.11.</td><td class='r neg'>−131,50 $</td><td class='r'>9/32</td></tr><tr><td>Do 5.11.</td><td class='r neg'>−60,06 $</td><td class='r'>10/21</td></tr><tr><td>Mi 4.11.</td><td class='r pos'>+71,41 $</td><td class='r'>24/51</td></tr><tr><td>Di 3.11.</td><td class='r pos'>+38,00 $</td><td class='r'>12/20</td></tr><tr><td>Mo 2.11.</td><td class='r pos'>+98,48 $</td><td class='r'>20/32</td></tr><tr><td>So 1.11.</td><td class='r pos'>+20,35 $</td><td class='r'>2/3</td></tr><tr><td>Sa 31.10.</td><td class='r neg'>−0,89 $</td><td class='r'>2/5</td></tr><tr><td>Fr 30.10.</td><td class='r pos'>+49,66 $</td><td class='r'>29/53</td></tr><tr><td>Do 29.10.</td><td class='r neg'>−109,22 $</td><td class='r'>7/30</td></tr></table></details></div>
+
+<div class="card"><h2>Verlauf seit dem Start</h2><div class="sub">Alle Gewinne und Verluste zusammengezählt, in Dollar.</div>
+<div class="chart" id="c-kum" data-titel="Verlauf seit dem Start"><div class="tip"></div></div></div>
+
+<div class="card"><h2>Letzte 24 Stunden</h2><div class="sub">Gewinn je Stunde in Dollar, Uhrzeit in Wien.</div>
+<div class="chart" id="c-std" data-titel="Gewinn je Stunde"><div class="tip"></div></div></div>
+
+<div class="card"><h2>Was der Bot gerade macht</h2>
+<div class="chips"><span class='chip'><i class='dot ok'></i>✓ Coinbase</span><span class='chip'><i class='dot ok'></i>✓ Polymarket</span><span class='chip'><i class='dot ok'></i>✓ Chainlink</span><span class='chip'><i class='dot ok'></i>✓ Binance</span><span class='chip'><i class='dot ok'></i>✓ Bybit</span><span class='chip'><i class='dot ok'></i>✓ OKX</span></div>
+<div class='row'><span>Läuft ohne Unterbrechung seit</span><span>1 Std 4 Min</span></div><div class='row'><span>Modus</span><span>Echtgeld (live)</span></div><div class='row'><span>Positionsgröße</span><span>50 Anteile je Kauf</span></div><div class='row'><span>Gerade offen</span><span>nichts</span></div><div class='row'><span>Seit dem letzten Neustart</span><span>131 Signale · 4 Orders · 0 Käufe</span></div><div class='row'><span>Schutz: Tagesgrenze</span><span>250 $ Verlust pro Tag</span></div><div class='row'><span>Schutz: Wochen-Notbremse</span><span>nicht ausgelöst</span></div><div class='row'><span>Kursbewegung 15 Min</span><span>0,27 % · Grenze 0,5 % (schreibt nur mit)</span></div><div class='row'><span>Bitcoin-Kurs</span><span>68.109 $</span></div><div class='row'><span>Version</span><span>0.8.3</span></div></div>
+
+<p class="foot">Die Zahlen kommen etwa alle 10 Minuten über deinen Mac. Ist der Mac aus, bleibt der Stand stehen – der Bot selbst läuft auf dem Server weiter. Gewinn = abgerechnete Märkte nach Gebühren, nur echte Orders. Ein Markt zählt zu der Stunde, in der er begonnen hat.</p>
+</div>
+<script>
+(function(){
+var D={"gen":1794616738521,"tage":[{"d":"2026-10-29","l":"Do 29.10.","x":"29.10.","v":-109.22,"n":30,"w":7},{"d":"2026-10-30","l":"Fr 30.10.","x":"30.10.","v":49.66,"n":53,"w":29},{"d":"2026-10-31","l":"Sa 31.10.","x":"31.10.","v":-0.89,"n":5,"w":2},{"d":"2026-11-01","l":"So 1.11.","x":"1.11.","v":20.35,"n":3,"w":2},{"d":"2026-11-02","l":"Mo 2.11.","x":"2.11.","v":98.48,"n":32,"w":20},{"d":"2026-11-03","l":"Di 3.11.","x":"3.11.","v":38.0,"n":20,"w":12},{"d":"2026-11-04","l":"Mi 4.11.","x":"4.11.","v":71.41,"n":51,"w":24},{"d":"2026-11-05","l":"Do 5.11.","x":"5.11.","v":-60.06,"n":21,"w":10},{"d":"2026-11-06","l":"Fr 6.11.","x":"6.11.","v":-131.5,"n":32,"w":9},{"d":"2026-11-07","l":"Sa 7.11.","x":"7.11.","v":0.0,"n":0,"w":0},{"d":"2026-11-08","l":"So 8.11.","x":"8.11.","v":45.93,"n":6,"w":5},{"d":"2026-11-09","l":"Mo 9.11.","x":"9.11.","v":-7.58,"n":23,"w":12},{"d":"2026-11-10","l":"Di 10.11.","x":"10.11.","v":187.2,"n":18,"w":10},{"d":"2026-11-11","l":"Mi 11.11.","x":"11.11.","v":7.33,"n":10,"w":4},{"d":"2026-11-12","l":"Do 12.11.","x":"12.11.","v":204.82,"n":21,"w":12},{"d":"2026-11-13","l":"Fr 13.11.","x":"13.11.","v":-150.91,"n":47,"w":20},{"d":"2026-11-14","l":"Sa 14.11.","x":"14.11.","v":1.15,"n":1,"w":1}],"std":[{"l":"Fr 02–03 Uhr","x":"","v":-6.03,"n":2,"w":1},{"l":"Fr 03–04 Uhr","x":"","v":-62.2,"n":2,"w":0},{"l":"Fr 04–05 Uhr","x":"","v":-10.53,"n":6,"w":3},{"l":"Fr 05–06 Uhr","x":"","v":10.06,"n":6,"w":3},{"l":"Fr 06–07 Uhr","x":"06","v":-55.28,"n":4,"w":0},{"l":"Fr 07–08 Uhr","x":"","v":-10.79,"n":3,"w":1},{"l":"Fr 08–09 Uhr","x":"","v":-21.5,"n":1,"w":0},{"l":"Fr 09–10 Uhr","x":"","v":18.69,"n":1,"w":1},{"l":"Fr 10–11 Uhr","x":"","v":17.02,"n":2,"w":1},{"l":"Fr 11–12 Uhr","x":"","v":0.0,"n":0,"w":0},{"l":"Fr 12–13 Uhr","x":"12","v":-23.49,"n":1,"w":0},{"l":"Fr 13–14 Uhr","x":"","v":0.0,"n":0,"w":0},{"l":"Fr 14–15 Uhr","x":"","v":28.64,"n":1,"w":1},{"l":"Fr 15–16 Uhr","x":"","v":-26.77,"n":3,"w":1},{"l":"Fr 16–17 Uhr","x":"","v":2.12,"n":5,"w":3},{"l":"Fr 17–18 Uhr","x":"","v":14.25,"n":4,"w":3},{"l":"Fr 18–19 Uhr","x":"18","v":0.0,"n":0,"w":0},{"l":"Fr 19–20 Uhr","x":"","v":0.0,"n":0,"w":0},{"l":"Fr 20–21 Uhr","x":"","v":0.0,"n":0,"w":0},{"l":"Fr 21–22 Uhr","x":"","v":0.0,"n":0,"w":0},{"l":"Fr 22–23 Uhr","x":"","v":0.0,"n":0,"w":0},{"l":"Fr 23–00 Uhr","x":"","v":-29.87,"n":3,"w":1},{"l":"Sa 00–01 Uhr","x":"00","v":1.15,"n":1,"w":1},{"l":"Sa 01–02 Uhr","x":"","v":0.0,"n":0,"w":0}],"kum":[[1793280300000,0.0],[1793282400000,-14.17],[1793286000000,-60.26],[1793289600000,-64.24],[1793293200000,-66.35],[1793296800000,-70.91],[1793304000000,-68.09],[1793307600000,-109.22],[1793322000000,-110.37],[1793325600000,-143.18],[1793329200000,-139.39],[1793332800000,-126.51],[1793336400000,-116.06],[1793340000000,-121.32],[1793343600000,-134.08],[1793347200000,-124.02],[1793350800000,-141.7],[1793354400000,-131.03],[1793358000000,-123.62],[1793361600000,-137.96],[1793365200000,-143.51],[1793368800000,-136.6],[1793372400000,-97.58],[1793376000000,-104.09],[1793379600000,-97.73],[1793383200000,-75.3],[1793386800000,-58.65],[1793390400000,-60.0],[1793394000000,-53.26],[1793397600000,-59.55],[1793422800000,-50.7],[1793448000000,-59.3],[1793455200000,-70.06],[1793462400000,-60.21],[1793484000000,-60.44],[1793494800000,-45.66],[1793505600000,-48.4],[1793520000000,-40.09],[1793577600000,-29.03],[1793581200000,-18.83],[1793602800000,-4.34],[1793606400000,-8.72],[1793610000000,-22.13],[1793624400000,-12.87],[1793628000000,15.89],[1793631600000,29.81],[1793635200000,34.1],[1793638800000,59.88],[1793642400000,44.01],[1793646000000,40.38],[1793649600000,64.42],[1793653200000,58.06],[1793656800000,58.39],[1793667600000,68.84],[1793671200000,83.68],[1793674800000,71.54],[1793678400000,82.07],[1793682000000,92.92],[1793689200000,82.77],[1793700000000,90.44],[1793710800000,77.85],[1793718000000,92.92],[1793721600000,101.85],[1793725200000,81.95],[1793728800000,108.29],[1793743200000,96.39],[1793750400000,127.58],[1793754000000,138.51],[1793757600000,112.8],[1793761200000,186.97],[1793764800000,169.52],[1793768400000,176.8],[1793772000000,199.08],[1793775600000,209.18],[1793782800000,219.64],[1793793600000,227.23],[1793797200000,286.56],[1793800800000,280.27],[1793804400000,262.63],[1793808000000,166.2],[1793811600000,184.02],[1793815200000,167.2],[1793818800000,184.06],[1793826000000,175.12],[1793829600000,167.8],[1793851200000,201.55],[1793862000000,203.5],[1793890800000,244.24],[1793894400000,216.19],[1793898000000,172.4],[1793901600000,75.74],[1793905200000,119.93],[1793908800000,132.62],[1793912400000,155.14],[1793916000000,107.74],[1793923200000,86.24],[1793926800000,80.11],[1793937600000,32.9],[1793944800000,33.01],[1793952000000,14.87],[1793962800000,11.89],[1793966400000,-5.39],[1793973600000,4.29],[1793977200000,3.87],[1793980800000,-19.26],[1793984400000,-41.54],[1793988000000,-11.62],[1793998800000,-23.75],[1794146400000,-19.13],[1794157200000,-28.72],[1794178800000,22.18],[1794182400000,0.67],[1794186000000,16.84],[1794189600000,39.99],[1794200400000,25.76],[1794204000000,44.66],[1794207600000,95.38],[1794211200000,84.3],[1794214800000,64.0],[1794225600000,58.08],[1794229200000,24.33],[1794232800000,-0.33],[1794236400000,16.29],[1794240000000,34.97],[1794243600000,14.6],[1794283200000,-2.51],[1794304800000,-13.75],[1794308400000,10.39],[1794312000000,-11.11],[1794319200000,4.79],[1794322800000,126.0],[1794326400000,218.92],[1794330000000,219.06],[1794333600000,205.24],[1794344400000,201.81],[1794355200000,180.69],[1794409200000,198.58],[1794412800000,189.39],[1794416400000,204.2],[1794420000000,237.78],[1794427200000,225.13],[1794438000000,209.14],[1794441600000,201.0],[1794448800000,221.75],[1794466800000,241.39],[1794481200000,223.49],[1794492000000,297.36],[1794495600000,276.07],[1794499200000,258.68],[1794502800000,388.08],[1794510000000,413.95],[1794528000000,425.48],[1794531600000,418.72],[1794535200000,412.69],[1794538800000,350.49],[1794542400000,339.96],[1794546000000,350.02],[1794549600000,294.74],[1794553200000,283.95],[1794556800000,262.45],[1794560400000,281.14],[1794564000000,298.16],[1794571200000,274.67],[1794578400000,303.31],[1794582000000,276.54],[1794585600000,278.66],[1794589200000,292.91],[1794610800000,263.04],[1794614400000,264.19],[1794616740471,264.19]]}, NS='http://www.w3.org/2000/svg', geladen=Date.now();
+function el(n,a,p){var x=document.createElementNS(NS,n);for(var k in a)x.setAttribute(k,a[k]);if(p)p.appendChild(x);return x}
+function usd(v,d){var s=Math.abs(v).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});return(Math.abs(v)<0.005?'':v>0?'+':'−')+s+' $'}
+function achse(t){return(t>0?'+':t<0?'−':'')+Math.abs(t).toLocaleString('de-DE')}
+function skala(lo,hi){var pad=(hi-lo)*0.16||1;if(lo<0)lo-=pad;if(hi>0)hi+=pad;if(hi-lo<2){hi+=1;lo-=lo<0?1:0}
+  var raw=(hi-lo)/4,mag=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)),f=raw/mag,st=(f<=1?1:f<=2?2:f<=5?5:10)*mag,t=[];
+  for(var v=Math.ceil(lo/st)*st;v<=hi+1e-9;v+=st)t.push(Math.round(v/st)*st);return{lo:lo,hi:hi,t:t}}
+function tipp(box,x,y,kopf,zeilen){var t=box.querySelector('.tip');t.textContent='';var b=document.createElement('b');b.textContent=kopf;t.appendChild(b);
+  zeilen.forEach(function(z){var d=document.createElement('div');d.textContent=z;t.appendChild(d)});
+  var w=box.clientWidth,half=t.offsetWidth/2+2;t.style.left=Math.max(half,Math.min(w-half,x))+'px';t.style.top=Math.max(t.offsetHeight+2,y-8)+'px';t.style.opacity=1}
+function weg(box){box.querySelector('.tip').style.opacity=0}
+function quote(w,n){return !n?'keine Märkte':n===1?'1 Markt · '+(w?'gewonnen':'verloren'):w+' von '+n+' Märkten gewonnen'}
+var ruhe=[];document.addEventListener('pointerdown',function(ev){if(!ev.target.closest||!ev.target.closest('.chart svg'))ruhe.forEach(function(f){f()})});
+
+function balken(id,items,jedes){var box=document.getElementById(id);if(!box)return;var alt=box.querySelector('svg');if(alt)box.removeChild(alt);
+  var W=box.clientWidth||340,H=170,mL=40,mR=6,mT=8,mB=20,n=items.length;if(!n)return;
+  var lo=0,hi=0;items.forEach(function(d){lo=Math.min(lo,d.v);hi=Math.max(hi,d.v)});var s=skala(lo,hi);
+  function y(v){return mT+(s.hi-v)/(s.hi-s.lo)*(H-mT-mB)}
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,height:H,role:'img','aria-label':box.getAttribute('data-titel')});
+  s.t.forEach(function(t){el('line',{x1:mL,x2:W-mR,y1:y(t),y2:y(t),stroke:t===0?'var(--axis)':'var(--grid)','stroke-width':1},svg);
+    el('text',{x:mL-6,y:y(t)+4,'text-anchor':'end'},svg).textContent=achse(t)});
+  var slot=(W-mL-mR)/n,bw=Math.max(2,Math.min(24,slot-2)),marks=[],imax=-1,imin=-1;
+  items.forEach(function(d,i){if(d.v>0&&(imax<0||d.v>items[imax].v))imax=i;if(d.v<0&&(imin<0||d.v<items[imin].v))imin=i});
+  items.forEach(function(d,i){var cx=mL+slot*(i+.5),y0=y(0),y1=y(d.v),h=Math.abs(y1-y0);
+    if(h>=0.5){var r=Math.min(4,bw/2,h),x=cx-bw/2,p=d.v>0?
+      'M'+x+','+y0+'V'+(y1+r)+'q0,'+(-r)+' '+r+','+(-r)+'h'+(bw-2*r)+'q'+r+',0 '+r+','+r+'V'+y0+'Z':
+      'M'+x+','+y0+'V'+(y1-r)+'q0,'+r+' '+r+','+r+'h'+(bw-2*r)+'q'+r+',0 '+r+','+(-r)+'V'+y0+'Z';
+      marks[i]=el('path',{d:p,fill:d.v>0?'var(--good)':'var(--bad)'},svg)}
+    if(d.x&&(!jedes||(n-1-i)%jedes===0))el('text',{x:cx,y:H-4,'text-anchor':'middle'},svg).textContent=d.x;
+    if(i===imax||i===imin){var a=cx<mL+30?'start':cx>W-mR-30?'end':'middle',tx=a==='start'?cx-bw/2:a==='end'?cx+bw/2:cx;
+      el('text',{x:tx,y:d.v>0?y1-5:y1+13,'text-anchor':a,'class':'wert'},svg).textContent=usd(d.v,0)}});
+  box.appendChild(svg);
+  function zeig(ev){var rc=svg.getBoundingClientRect(),i=Math.floor((ev.clientX-rc.left-mL)/slot);if(i<0||i>=n){weg(box);hell(-1);return}
+    var d=items[i];hell(i);tipp(box,mL+slot*(i+.5),y(Math.max(d.v,0)),usd(d.v,2),[d.l,quote(d.w,d.n)])}
+  function hell(i){marks.forEach(function(m,j){if(m)m.setAttribute('opacity',i<0||i===j?1:.4)})}
+  svg.addEventListener('pointerdown',zeig);svg.addEventListener('pointermove',zeig);
+  svg.addEventListener('pointerleave',function(ev){if(ev.pointerType==='mouse'){weg(box);hell(-1)}});ruhe.push(function(){weg(box);hell(-1)})}
+
+function linie(id,pts){var box=document.getElementById(id);if(!box)return;var alt=box.querySelector('svg');if(alt)box.removeChild(alt);
+  if(pts.length<2)return;var W=box.clientWidth||340,H=170,mL=40,mR=58,mT=8,mB=20;
+  var lo=0,hi=0;pts.forEach(function(p){lo=Math.min(lo,p[1]);hi=Math.max(hi,p[1])});var s=skala(lo,hi),t0=pts[0][0],t1=pts[pts.length-1][0];
+  function x(t){return mL+(t-t0)/(t1-t0||1)*(W-mL-mR)}function y(v){return mT+(s.hi-v)/(s.hi-s.lo)*(H-mT-mB)}
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,height:H,role:'img','aria-label':box.getAttribute('data-titel')});
+  s.t.forEach(function(t){el('line',{x1:mL,x2:W-mR,y1:y(t),y2:y(t),stroke:t===0?'var(--axis)':'var(--grid)','stroke-width':1},svg);
+    el('text',{x:mL-6,y:y(t)+4,'text-anchor':'end'},svg).textContent=achse(t)});
+  var tage=Math.max(1,Math.round((t1-t0)/864e5)),schritt=Math.ceil(tage/4),d0=new Date(t0);d0.setHours(24,0,0,0);
+  for(var d=d0,i=0;d.getTime()<t1;d=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1),i++){
+    if(i%schritt===0&&x(d.getTime())<W-mR-14)el('text',{x:x(d.getTime()),y:H-4,'text-anchor':'middle'},svg).textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'}
+  var p='';pts.forEach(function(q,i){p+=(i?'L':'M')+x(q[0]).toFixed(1)+','+y(q[1]).toFixed(1)});
+  el('path',{d:p+'L'+x(t1)+','+y(0)+'L'+x(t0)+','+y(0)+'Z',fill:'var(--series)',opacity:.1},svg);
+  el('path',{d:p,fill:'none',stroke:'var(--series)','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'},svg);
+  var L=pts[pts.length-1];el('circle',{cx:x(L[0]),cy:y(L[1]),r:4,fill:'var(--series)',stroke:'var(--surface)','stroke-width':2},svg);
+  el('text',{x:x(L[0])+8,y:y(L[1])+4,'class':'wert'},svg).textContent=usd(L[1],0);
+  var fad=el('line',{y1:mT,y2:H-mB,stroke:'var(--axis)','stroke-width':1,opacity:0},svg),pk=el('circle',{r:4,fill:'var(--series)',stroke:'var(--surface)','stroke-width':2,opacity:0},svg);
+  box.appendChild(svg);var WT=['So','Mo','Di','Mi','Do','Fr','Sa'];
+  function zeig(ev){var rc=svg.getBoundingClientRect(),px=ev.clientX-rc.left,best=0,bd=1e9;
+    pts.forEach(function(q,i){var dd=Math.abs(x(q[0])-px);if(dd<bd){bd=dd;best=i}});var q=pts[best],dt=new Date(q[0]);
+    fad.setAttribute('x1',x(q[0]));fad.setAttribute('x2',x(q[0]));fad.setAttribute('opacity',1);pk.setAttribute('cx',x(q[0]));pk.setAttribute('cy',y(q[1]));pk.setAttribute('opacity',1);
+    tipp(box,x(q[0]),y(q[1]),usd(q[1],2),[WT[dt.getDay()]+' '+dt.getDate()+'.'+(dt.getMonth()+1)+'. '+('0'+dt.getHours()).slice(-2)+':'+('0'+dt.getMinutes()).slice(-2)+' Uhr'])}
+  svg.addEventListener('pointerdown',zeig);svg.addEventListener('pointermove',zeig);
+  function aus(){weg(box);fad.setAttribute('opacity',0);pk.setAttribute('opacity',0)}
+  svg.addEventListener('pointerleave',function(ev){if(ev.pointerType==='mouse')aus()});ruhe.push(aus)}
+
+function zeichnen(){ruhe.length=0;var t=D.tage.slice(-30);balken('c-tage',t,Math.ceil(t.length/6));linie('c-kum',D.kum);balken('c-std',D.std,0)}
+zeichnen();var bw=window.innerWidth;window.addEventListener('resize',function(){if(window.innerWidth!==bw){bw=window.innerWidth;zeichnen()}});
+
+var alter=document.getElementById('alter'),stand=alter.textContent;
+function uhr(){var m=Math.max(0,Math.round((Date.now()-D.gen)/60000));
+  if(m>25){alter.className='alt warn';alter.textContent='Achtung: '+stand+' – seit '+(m<120?m+' Minuten':Math.round(m/60)+' Stunden')+' nichts Neues. Mac aus oder offline?'}
+  else{alter.className='alt';alter.textContent=stand+' (vor '+(m<1?'weniger als 1 Minute':m+(m===1?' Minute':' Minuten'))+')'}}
+uhr();setInterval(uhr,20000);
+function neu(hart){var u=location.pathname+'?t='+Date.now();
+  if(hart||!window.fetch){location.replace(u);return}
+  fetch(u,{cache:'no-store'}).then(function(r){return r.text()}).then(function(tx){var m=/data-gen="(\d+)"/.exec(tx);if(m&&+m[1]>D.gen)location.replace(u)}).catch(function(){})}
+document.getElementById('neu').addEventListener('click',function(){neu(true)});
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&Date.now()-geladen>45000)neu(false)});
+window.addEventListener('pageshow',function(ev){if(ev.persisted)neu(false)});
+setInterval(function(){if(!document.hidden)neu(false)},120000);
+})();
+</script></body></html>
