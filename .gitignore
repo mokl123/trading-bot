@@ -9,3 +9,7 @@
 !/gewinn.html
 !/bot.html
 !/bot-icon.png
+# PDF-Berichte für die App (nur PDFs)
+!/berichte/
+/berichte/*
+!/berichte/*.pdf
